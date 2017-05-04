@@ -1,0 +1,12 @@
+{
+  "name": "travis-js-test",
+  "version": "1.0.0",
+  "description": "playing with travis ci",
+  "scripts": {
+    "test": "vows --spec"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "vows": "^0.8.1"
+  }
+}
