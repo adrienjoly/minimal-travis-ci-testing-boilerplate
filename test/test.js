@@ -1,27 +1,21 @@
 var vows = require('vows'),
     assert = require('assert');
 
-// Create a Test Suite
-vows.describe('Division by Zero').addBatch({
-    'when dividing a number by zero': {
-        topic: function () { return 42 / 0 },
+var fs = require('fs');
+var vm = require('vm');
 
-        'we get Infinity': function (topic) {
-            assert.equal (topic, Infinity);
+var codeToTest = fs.readFileSync('code-to-test.js');
+vm.runInThisContext(codeToTest);//(require);
+
+// Create a Test Suite
+vows.describe('Code to test').addBatch({
+    'fctToTest': {
+        topic: function() { return fctToTest },
+
+        'is a function': function (topic) {
+            assert.equal (typeof topic, 'function');
         }
     },
-    'but when dividing zero by zero': {
-        topic: function () { return 0 / 0 },
-
-        'we get a value which': {
-            'is not a number': function (topic) {
-                assert.isNaN (topic);
-            },
-            'is not equal to itself': function (topic) {
-                assert.notEqual (topic, topic);
-            }
-        }
-    }
 })
 .export(module); // to be run by vows CLI
 //.run(); // or to be run with the node command
